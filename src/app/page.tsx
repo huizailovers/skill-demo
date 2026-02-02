@@ -3,8 +3,12 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import KnowledgePanel from '@/components/KnowledgePanel';
-import Terminal from '@/components/Terminal';
 import { Columns, Layers, GripVertical, BookOpen, Code } from 'lucide-react';
+
+const OnlineIDE = dynamic(() => import('@/components/OnlineIDE'), {
+  ssr: false,
+  loading: () => null,
+});
 
 const FloatingTerminal = dynamic(() => import('@/components/FloatingTerminal'), {
   ssr: false,
@@ -155,8 +159,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="p-4 overflow-hidden" style={{ width: `${100 - splitRatio}%` }}>
-                <Terminal />
+              <div className="overflow-hidden" style={{ width: `${100 - splitRatio}%` }}>
+                <OnlineIDE />
               </div>
             </main>
           )}
